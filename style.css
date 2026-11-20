@@ -119,7 +119,7 @@ footer {
 }
 footer span { letter-spacing: .18em; text-transform: uppercase; font-size: 11px; }
 @media (max-width: 650px) {
-  .sculpture { background-position: 54% center; }
+  .sculpture { background-size: contain; background-position: center bottom; transform: none; }
   .wordmark {
     top: 27%;
     left: 50%;
