@@ -42,6 +42,13 @@ nav {
   border-bottom: 1px solid var(--rule);
 }
 nav a { display: grid; align-items: center; font-size: clamp(14px, 1.2vw, 21px); }
+.brand-home { margin-right: auto; min-width: 44px; justify-items: start; }
+.brand-home img {
+  display: block;
+  height: calc(var(--header) - 12px);
+  width: auto;
+  mix-blend-mode: lighten;
+}
 nav a:hover, footer a:hover { text-decoration: underline; text-underline-offset: .35em; }
 .hero { position: relative; height: calc(100svh - var(--header)); }
 .wordmark {
