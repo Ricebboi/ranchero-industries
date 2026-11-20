@@ -75,6 +75,23 @@ nav a:hover, footer a:hover { text-decoration: underline; text-underline-offset:
   background: var(--rule);
 }
 .reading-column { max-width: 660px; }
+.about-layout {
+  display: grid;
+  grid-template-areas: "title portrait" "copy portrait";
+  grid-template-columns: minmax(0, 50ch) auto;
+  column-gap: clamp(32px, 7vw, 112px);
+  justify-content: start;
+}
+.about-layout h2 { grid-area: title; }
+.about-copy { grid-area: copy; }
+.founder-portrait {
+  grid-area: portrait;
+  align-self: center;
+  display: block;
+  width: clamp(144px, 18vw, 250px);
+  height: auto;
+  border-radius: 50%;
+}
 .section-label {
   margin: 0 0 clamp(25px, 3.5vw, 54px);
   font-size: 11px;
@@ -138,6 +155,14 @@ footer span { letter-spacing: .18em; text-transform: uppercase; font-size: 11px;
     background: linear-gradient(90deg, rgb(9 9 9 / 98%) 0%, rgb(9 9 9 / 92%) 62%, rgb(9 9 9 / 52%) 86%, rgb(9 9 9 / 14%));
   }
   .ventures { grid-template-columns: 1fr; gap: 36px; }
+  .about-layout {
+    grid-template-areas: "title portrait" "copy copy";
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 12px;
+  }
+  .about-layout h2 { font-size: clamp(39px, 12.5vw, 48px); }
+  .founder-portrait { width: clamp(64px, 21vw, 104px); }
   .ventures::after {
     content: "";
     position: absolute;
