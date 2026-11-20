@@ -1,0 +1,140 @@
+:root {
+  color-scheme: dark;
+  --ink: #090909;
+  --ivory: #f6eedc;
+  --muted: #d1c9b9;
+  --rule: rgb(232 219 191 / 25%);
+  --header: clamp(52px, 3.77vw, 74px);
+  --gutter: clamp(24px, 6.3vw, 126px);
+  font-family: Helvetica, Arial, sans-serif;
+  color: var(--ivory);
+  background: var(--ink);
+  scroll-padding-top: var(--header);
+}
+* { box-sizing: border-box; }
+body { margin: 0; isolation: isolate; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 2px solid var(--ivory); outline-offset: 5px; }
+.skip { position: fixed; top: -100px; left: 1rem; z-index: 5; padding: 10px; background: var(--ink); }
+.skip:focus { top: 6px; }
+.sculpture {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  inset: var(--header) 0 0;
+  background: var(--ink) url("assets/brass-sculpture.webp") center / cover no-repeat;
+  transform-origin: 77% 55%;
+  transform: scale(var(--art-scale, 1));
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  padding: 0 3%;
+  background: #090909;
+}
+nav {
+  height: var(--header);
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  gap: clamp(24px, 3.3vw, 56px);
+  border-bottom: 1px solid var(--rule);
+}
+nav a { display: grid; align-items: center; font-size: clamp(14px, 1.2vw, 21px); }
+nav a:hover, footer a:hover { text-decoration: underline; text-underline-offset: .35em; }
+.hero { position: relative; height: calc(100svh - var(--header)); }
+.wordmark {
+  position: absolute;
+  left: 25%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-items: center;
+  gap: .35em;
+  margin: 0;
+  color: var(--ivory);
+  font: 400 3.9vw/1.1 Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+}
+.wordmark span { letter-spacing: .48em; padding-left: .48em; }
+.wordmark span + span { font-size: .56em; }
+.chapter {
+  position: relative;
+  display: grid;
+  align-content: center;
+  min-height: 85svh;
+  padding: clamp(64px, 9vw, 155px) var(--gutter);
+  background: linear-gradient(90deg, rgb(10 10 9 / 99%) 0%, rgb(10 10 9 / 93%) 41%, rgb(10 10 9 / 62%) 63%, rgb(10 10 9 / 8%));
+}
+.chapter::before {
+  content: "";
+  position: absolute;
+  inset: 0 var(--gutter) auto;
+  height: 1px;
+  background: var(--rule);
+}
+.reading-column { max-width: 660px; }
+.section-label {
+  margin: 0 0 clamp(25px, 3.5vw, 54px);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .21em;
+  text-transform: uppercase;
+  color: #debe89;
+}
+h2 { font: 400 clamp(48px, 5.6vw, 94px)/1.01 Georgia, serif; letter-spacing: -.055em; margin: 0; }
+.body-copy { max-width: 37ch; font-size: clamp(17px, 1.4vw, 21px); line-height: 1.65; color: var(--muted); margin: 26px 0 0; }
+.byline { font-size: 16px; line-height: 1.5; margin: 38px 0 0; }
+.byline span { display: block; margin-top: 3px; font-size: 13px; color: var(--muted); }
+.ventures { grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); align-items: center; gap: 5vw; }
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  border-bottom: 1px solid #c5a66e;
+  margin-top: 24px;
+  padding: 12px 0;
+}
+.action:hover { color: #ffe1ab; }
+.product { justify-self: center; text-align: center; margin: 0; }
+.product video {
+  display: block;
+  width: min(100%, clamp(235px, 21vw, 320px));
+  height: auto;
+  margin: 0 auto;
+  border: 4px solid #36352f;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px #0008;
+}
+.product figcaption { margin: 15px auto 0; padding: 5px 12px; width: fit-content; background: #12110fee; font-size: 12px; color: var(--ivory); }
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px var(--gutter);
+  border-top: 1px solid var(--rule);
+  background: rgb(9 9 9 / 90%);
+  font-size: 13px;
+}
+footer span { letter-spacing: .18em; text-transform: uppercase; font-size: 11px; }
+@media (max-width: 650px) {
+  .sculpture { background-position: 54% center; }
+  .wordmark {
+    top: 27%;
+    left: 50%;
+    font-size: clamp(26px, 8vw, 48px);
+  }
+  .hero { background: linear-gradient(#090909 0%, rgb(9 9 9 / 96%) 24%, transparent 59%); }
+  .chapter {
+    min-height: 75svh;
+    padding-right: max(48px, 16vw);
+    background: linear-gradient(90deg, rgb(9 9 9 / 98%) 0%, rgb(9 9 9 / 92%) 62%, rgb(9 9 9 / 52%) 86%, rgb(9 9 9 / 14%));
+  }
+  .ventures { grid-template-columns: 1fr; gap: 36px; }
+  .product { justify-self: start; }
+  footer { gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sculpture { transform: none; }
+}
