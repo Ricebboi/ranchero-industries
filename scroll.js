@@ -1,6 +1,6 @@
 // Move closer to the same sculpture as the sections pass in front of it.
 const sculpture = document.querySelector('.sculpture');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const sculptureMotion = window.matchMedia('(width > 650px) and (prefers-reduced-motion: no-preference)');
 let frame = 0;
 
 function updateSculpture() {
@@ -11,10 +11,22 @@ function updateSculpture() {
 }
 
 function scheduleUpdate() {
-  if (!frame && !reducedMotion.matches) frame = requestAnimationFrame(updateSculpture);
+  if (!frame) frame = requestAnimationFrame(updateSculpture);
 }
 
-window.addEventListener('scroll', scheduleUpdate, { passive: true });
-window.addEventListener('resize', scheduleUpdate);
-reducedMotion.addEventListener('change', scheduleUpdate);
-scheduleUpdate();
+function syncMotion() {
+  if (sculptureMotion.matches) {
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+    scheduleUpdate();
+  } else {
+    window.removeEventListener('scroll', scheduleUpdate);
+    window.removeEventListener('resize', scheduleUpdate);
+    cancelAnimationFrame(frame);
+    frame = 0;
+    sculpture.style.removeProperty('--art-scale');
+  }
+}
+
+sculptureMotion.addEventListener('change', syncMotion);
+syncMotion();

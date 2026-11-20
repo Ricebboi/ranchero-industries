@@ -120,7 +120,9 @@ footer {
 footer span { letter-spacing: .18em; text-transform: uppercase; font-size: 11px; }
 @media (max-width: 650px) {
   .sculpture {
-    top: 38svh;
+    inset: 38svh 0 auto;
+    /* Keep the photo crop stable as the browser toolbar slides out of view. */
+    height: calc(100lvh - 38svh);
     background-position: 88% top;
     transform: none;
   }
@@ -136,8 +138,20 @@ footer span { letter-spacing: .18em; text-transform: uppercase; font-size: 11px;
     background: linear-gradient(90deg, rgb(9 9 9 / 98%) 0%, rgb(9 9 9 / 92%) 62%, rgb(9 9 9 / 52%) 86%, rgb(9 9 9 / 14%));
   }
   .ventures { grid-template-columns: 1fr; gap: 36px; }
+  .ventures::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 100%;
+    height: clamp(48px, 10svh, 96px);
+    background: inherit;
+    mask-image: linear-gradient(transparent, black);
+    pointer-events: none;
+  }
   .product { justify-self: start; }
   footer { gap: 16px; }
+}
+@media (max-width: 650px) and (prefers-reduced-motion: no-preference) {
+  :root { scroll-behavior: smooth; }
 }
 @media (prefers-reduced-motion: reduce) {
   .sculpture { transform: none; }
